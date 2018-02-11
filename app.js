@@ -36,7 +36,7 @@ app.get('/', function(request, response){ // 모든 데이터 조회
 	console.log('=== 모든 데이터 조회 ===');
 	fs.readFile('guestbook.html', 'utf8', function(error, data){
 		client.query('SELECT * FROM guestbook ORDER BY no DESC', function(error, results){
-			// console.log(results);
+			console.log(results);
 			response.send(ejs.render(data, {
 				data: results,
 				srhMod: false
@@ -69,6 +69,7 @@ app.post('/', function(request, response){
 		client.query('INSERT INTO guestbook (nickname, content, writedate, personacon) VALUES (?, ?, ?, ?)', [
 			body.nickname, body.content, nowDate, body.personacon
 		], function(error, results){
+			console.log(results);
 			response.redirect('/');
 		});
 	} else if( body.searchMod ){
@@ -88,5 +89,3 @@ app.post('/', function(request, response){
 		}
 	}
 });
-
-
