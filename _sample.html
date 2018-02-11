@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> myblog :: 방명록 </title>
+	<link rel="stylesheet" type="text/css" href="default.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+</head>
+<body>
+
+	<!-- s: 방명록 -->
+	<section id="guestbook_container">
+
+		<h1>방명록</h1>
+
+		<!-- s: 글쓰기 -->
+		<div class="write_wrap">
+			<form method="post">
+				<table>
+					<col style="width:120px;" />
+					<col />
+					<tbody>
+						<tr>
+							<th><div>닉네임 <span>(30byte)</span></div></th>
+							<td>
+								<input type="text" class="txtEntry" name="nickname" />
+								<div class="personacon_list">
+									<a href="#" class="i">
+										<strong><img src="personacon/2751116.gif" width="19" height="19" alt="퍼스나콘" /></strong>
+										<span>다른 퍼스나콘 선택</span>
+									</a>
+									<div class="p_l">
+										<ul>
+											<li><a href="#"><img src="personacon/1131839.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1143760.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1456348.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1977205.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1977207.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/2751116.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><div>내용 <span>(200byte)</span></div></th>
+							<td><div class="txtArea"><textarea rows="5" name="content"></textarea></div></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" id="selectPersonacon" name="personacon" />
+				<input type="hidden" name="addMod" value="true" />
+				<div class="btn_wrap"><input type="submit" class="btnReg" value="등록" /></div>
+			</form>
+		</div>
+		<!-- e: 글쓰기 -->
+
+		<!-- s: 리스트 -->
+		<div class="list_wrap">
+			<!-- s: header -->
+			<div class="header">
+				<form method="post">
+					<select class="selBox01" name="sort">
+						<option value="sortCont" selected="selected">내용</option>
+						<option value="sortNick">닉네임</option>
+					</select>
+					<input type="text" class="txtEntry" name="searchTxt" />
+					<input type="submit" class="btnSrh" value="검색" />
+				</form>
+			</div>
+			<!-- e: header -->
+			<div class="inner">
+				<p class="nodata">데이터가 없습니다.</p>
+				<!-- s: item -->
+				<div class="item">
+					<div class="hd">
+						<i class="personacon"><img src="personacon/1977207.gif" width="19" height="19" alt="퍼스나콘" /></i>
+						<strong class="nick">관리자</strong>
+						<ul class="rBox">
+							<li class="no">No.18</li>
+							<li class="date">2012.07.23 15:25</li>
+						</ul>
+					</div>
+					<p class="cont">내용냉ㄴ욘ㅇㅇ</p>
+					<!-- s: modify -->
+					<form method="post">
+						<div class="modifyBox"></div>
+					</form>
+					<!-- e: modify -->
+					<div class="ctrlBox">
+						<a href="#" class="btnMod">수정</a>
+						<a href="#" class="btnDel">삭제</a>
+					</div>
+				</div>
+				<!-- e: item -->
+				<!-- s: item -->
+				<div class="item">
+					<div class="hd">
+						<i class="personacon"><img src="personacon/2751116.gif" width="19" height="19" alt="퍼스나콘" /></i>
+						<strong class="nick">관리자222</strong>
+						<ul class="rBox">
+							<li class="no">No.18</li>
+							<li class="date">2012.07.23 15:25</li>
+						</ul>
+					</div>
+					<p class="cont">내용냉ㄴ욘ㅇ222ㅇ</p>
+					<!-- s: modify -->
+					<form method="post">
+						<div class="modifyBox"></div>
+					</form>
+					<!-- e: modify -->
+					<div class="ctrlBox">
+						<a href="#" class="btnMod">수정</a>
+						<a href="#" class="btnDel">삭제</a>
+					</div>
+				</div>
+				<!-- e: item -->
+			</div>
+		</div>
+		<!-- e: 리스트 -->
+
+		<!-- s: 수정 -->
+		<div class="dimmed"></div>
+		<section class="modify_popup">
+			<div class="write_wrap">
+				<form method="post">
+					<table>
+						<col style="width:120px;" />
+						<col />
+						<tbody>
+							<tr>
+								<th><div>닉네임 <span>(30byte)</span></div></th>
+								<td>관리자</td>
+							</tr>
+							<tr>
+								<th><div>내용 <span>(200byte)</span></div></th>
+								<td><div class="txtArea"><textarea rows="5" name="content"></textarea></div></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn_wrap">
+						<input type="submit" class="btnReg" value="수정" />
+						<a href="#" class="btnCancel">취소</a>
+					</div>
+				</form>
+			</div>
+		</section>
+		<!-- e: 수정 -->
+
+	</section>
+	<!-- e: 방명록 -->
+
+</body>
+</html>

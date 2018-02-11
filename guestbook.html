@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> myblog :: 방명록 </title>
+	<link rel="stylesheet" type="text/css" href="default.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+</head>
+<body>
+
+	<!-- s: 방명록 -->
+	<section id="guestbook_container">
+
+		<h1>방명록</h1>
+
+		<!-- s: 글쓰기 -->
+		<div class="write_wrap">
+			<form method="post">
+				<table>
+					<col style="width:120px;" />
+					<col />
+					<tbody>
+						<tr>
+							<th><div>닉네임 <span>(30byte)</span></div></th>
+							<td>
+								<input type="text" class="txtEntry" name="nickname" />
+								<div class="personacon_list">
+									<a href="#" class="i">
+										<strong><img src="personacon/2751116.gif" width="19" height="19" alt="퍼스나콘" /></strong>
+										<span>다른 퍼스나콘 선택</span>
+									</a>
+									<div class="p_l">
+										<ul>
+											<li><a href="#"><img src="personacon/1131839.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1143760.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1456348.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1977205.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/1977207.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+											<li><a href="#"><img src="personacon/2751116.gif" width="19" height="19" alt="퍼스나콘" /></a></li>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><div>내용 <span>(200byte)</span></div></th>
+							<td><div class="txtArea"><textarea rows="5" name="content"></textarea></div></td>
+						</tr>
+					</tbody>
+				</table>
+				<input type="hidden" id="selectPersonacon" name="personacon" />
+				<input type="hidden" name="addMod" value="true" />
+				<div class="btn_wrap"><input type="submit" class="btnReg" value="등록" /></div>
+			</form>
+		</div>
+		<!-- e: 글쓰기 -->
+
+		<!-- s: 리스트 -->
+		<div class="list_wrap">
+			<!-- s: header -->
+			<div class="header">
+				<form method="post">
+					<select class="selBox01" name="sort">
+						<option value="content" selected="selected">내용</option>
+						<option value="nickname">닉네임</option>
+					</select>
+					<input type="text" class="txtEntry" name="searchTxt" />
+					<input type="hidden" name="searchMod" value="true" />
+					<input type="submit" class="btnSrh" value="검색" />
+					<% if( srhMod ){ %>
+					<a href="/" class="btn_type01 btnInit">초기화</a>
+					<% } %>
+				</form>
+			</div>
+			<!-- e: header -->
+			<div class="inner">
+				<% if( data.length ){ %>
+					<% data.forEach(function(item,idx){ %>
+					<!-- s: item -->
+					<div class="item">
+						<div class="hd">
+							<%
+								if( !item.personacon ){
+									// 퍼스나콘을 지정하지 않은 경우(null값), 기본 퍼스나콘 파일명
+									item.personacon = 2751116;
+								}
+							%>
+							<i class="personacon"><img src="personacon/<%= item.personacon %>.gif" width="19" height="19" alt="퍼스나콘" /></i>
+							<strong class="nick"><%= item.nickname %></strong>
+							<ul class="rBox">
+								<li class="no">No.<%= item.no %></li>
+								<li class="date"><%= item.writedate %></li>
+							</ul>
+						</div>
+						<% item.content = item.content.replace(/\r\n/gi, '<br />'); %>
+						<p class="cont"><%- item.content %></p>
+						<!-- s: modify -->
+						<form method="post">
+							<div class="modifyBox"></div>
+						</form>
+						<!-- e: modify -->
+						<div class="ctrlBox">
+							<a href="/edit/<%= item.no %>" class="btnMod">수정</a>
+							<a href="/delete/<%= item.no %>" class="btnDel">삭제</a>
+						</div>
+					</div>
+					<!-- e: item -->
+					<% }); %>
+				<% } else { // data.length가 0이면, 즉 데이터가 없으면 %>
+				<p class="nodata">데이터가 없습니다.</p>
+				<% } %>
+			</div>
+		</div>
+		<!-- e: 리스트 -->
+
+	</section>
+	<!-- e: 방명록 -->
+
+</body>
+</html>
